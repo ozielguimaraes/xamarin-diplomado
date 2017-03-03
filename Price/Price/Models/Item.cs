@@ -1,19 +1,30 @@
-﻿namespace Price.Models
+﻿using System;
+using Price.Helpers;
+
+namespace Price.Models
 {
-    public class Item : BaseDataObject
+    public class Item : ObservableObject
     {
-        string text = string.Empty;
-        public string Text
+        string _id = Guid.NewGuid().ToString();
+
+        public string Id
         {
-            get { return text; }
-            set { SetProperty(ref text, value); }
+            get { return _id; }
+            set { SetProperty(ref _id, value); }
         }
 
-        string description = string.Empty;
+        string _text = string.Empty;
+        public string Text
+        {
+            get { return _text; }
+            set { SetProperty(ref _text, value); }
+        }
+
+        string _description = string.Empty;
         public string Description
         {
-            get { return description; }
-            set { SetProperty(ref description, value); }
+            get { return _description; }
+            set { SetProperty(ref _description, value); }
         }
     }
 }

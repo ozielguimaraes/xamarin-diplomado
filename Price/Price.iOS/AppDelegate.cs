@@ -10,7 +10,8 @@ namespace Price.iOS
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
 			global::Xamarin.Forms.Forms.Init();
-			LoadApplication(new App());
+            Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
+            LoadApplication(new App());
 
 			return base.FinishedLaunching(app, options);
 		}

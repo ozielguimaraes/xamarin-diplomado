@@ -2,20 +2,21 @@
 
 namespace Price.ViewModels
 {
-    public class ItemDetailViewModel : BaseViewModel
+    public class ItemDetailVm : BaseVm<Item>
     {
         public Item Item { get; set; }
-        public ItemDetailViewModel(Item item = null)
+        public ItemDetailVm(Item item = null)
         {
+            if (item == null) return;
             Title = item.Text;
             Item = item;
         }
 
-        int quantity = 1;
+        int _quantity = 1;
         public int Quantity
         {
-            get { return quantity; }
-            set { SetProperty(ref quantity, value); }
+            get { return _quantity; }
+            set { SetProperty(ref _quantity, value); }
         }
     }
 }

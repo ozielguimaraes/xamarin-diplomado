@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Price.Views.Expenses.ExpensesPage"
+              Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Nova" Clicked="GoToNewExpense_Clicked" />
+        <ToolbarItem Text="Sobre" Clicked="GoToAppInformation_Clicked" Order="Secondary" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding Items}"
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="true"
+                      RefreshCommand="{Binding LoadItemsCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Margin="0,4" Padding="5" BackgroundColor="#FFFFFF">
+                                <Label TextColor="Black" Text="{Binding Nome}" FontSize="Small" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" />
+                                <Label Text="{Binding Name}" FontSize="Small" TextColor="Black" HorizontalOptions="CenterAndExpand"/>
+                                <Label Text="{Binding Total, StringFormat='{0:N}'}" FontSize="Micro" TextColor="Black" HorizontalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

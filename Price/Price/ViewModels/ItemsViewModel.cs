@@ -10,12 +10,12 @@ using Xamarin.Forms;
 
 namespace Price.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class ItemsVm : BaseVm<Item>
     {
         public ObservableRangeCollection<Item> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 
-        public ItemsViewModel()
+        public ItemsVm()
         {
             Title = "Browse";
             Items = new ObservableRangeCollection<Item>();
@@ -23,16 +23,14 @@ namespace Price.ViewModels
 
             MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
             {
-                var _item = item as Item;
-                Items.Add(_item);
-                await DataStore.AddItemAsync(_item);
+                Items.Add(item);
+                await DataStore.AddItemAsync(item);
             });
         }
 
         async Task ExecuteLoadItemsCommand()
         {
-            if (IsBusy)
-                return;
+            if (IsBusy) return;
 
             IsBusy = true;
 

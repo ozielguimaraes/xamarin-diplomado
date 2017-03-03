@@ -9,13 +9,13 @@ namespace Price.Views
 {
     public partial class ItemsPage : ContentPage
     {
-        ItemsViewModel viewModel;
+        readonly ItemsVm _vm;
 
         public ItemsPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ItemsViewModel();
+            BindingContext = _vm = new ItemsVm();
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -24,7 +24,7 @@ namespace Price.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailVm(item)));
 
             // Manually deselect item
             ItemsListView.SelectedItem = null;
@@ -39,8 +39,7 @@ namespace Price.Views
         {
             base.OnAppearing();
 
-            if (viewModel.Items.Count == 0)
-                viewModel.LoadItemsCommand.Execute(null);
+            if (_vm.Items.Count == 0) _vm.LoadItemsCommand.Execute(null);
         }
     }
 }

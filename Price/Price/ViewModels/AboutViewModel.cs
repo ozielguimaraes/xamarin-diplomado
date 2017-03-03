@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Windows.Input;
+using Price.Models;
 using Xamarin.Forms;
 
 namespace Price.ViewModels
 {
-    public class AboutViewModel : BaseViewModel
+    public class AboutVm : BaseVm<Item>
     {
-        public AboutViewModel()
+        public AboutVm()
         {
             Title = "About";
 
-            OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://xamarin.com/platform")));
+            OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://about.me/ozielguimaraes")));
         }
 
         /// <summary>
